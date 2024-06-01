@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+
+.golos {
+    font-family: "Golos", sans-serif;
+}
+
+.navbar-inner {
+    background:transparent;
+}
+
+.about {
+    background-color: #253432;
+    padding: 92px 0;
+}
+
+.services {
+    padding: 92px 0;
+}
+.services a {
+    text-decoration: none;
+    color: #DEE2E6;
+}
+
+.accordion-body{
+    padding-bottom: 16px 0;
+}
+
+.contact{
+    padding: 92px 0;
+}
