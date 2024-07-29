@@ -41,10 +41,23 @@ def send_request(data):
     else:
         print("An error occurred.")
 
+# def test():
+#     with open("services.md", "r") as f:
+#         content = f.read()
+#         data = mdj.dictify(content)
+#         services = {[]}
+#         for key in data:
+#             # print(key)
+#             services.append(data[key])
+#             print(data[key])
+#             print("\n")
+#         # print(data)
+
 
 def main():
     data = md_to_json()
     send_request(data)
+    # test()
 
 if __name__ == "__main__":
     main()
