@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'rest_framework',
+    'django_recaptcha',
 ]
 
 
@@ -147,3 +148,6 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+RECAPTCHA_PUBLIC_KEY = '6Ldv8PIpAAAAADAUbL5rB3wMpTfsoaJNdtPKKyQy'
+RECAPTCHA_PRIVATE_KEY = '6Ldv8PIpAAAAAFEkh2043DWDn2SHddS_1LkQqZBI'
