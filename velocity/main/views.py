@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .utils import parse_data
+from django.http import JsonResponse
 
 
 dotenv_path = find_dotenv()
@@ -40,15 +41,16 @@ def index(request):
 
             convert_to_html_context = render_to_string(template, context)
             plain_message = strip_tags(convert_to_html_context)
+            print('Name', name)
             
-            send_email(
-                subject='New Lead',
-                message=plain_message,
-                from_email=from_email,
-                recipient_list=[form.cleaned_data['email']],
-                html_message=convert_to_html_context,
-                fail_silently=False,
-            )
+            # send_email(
+            #     subject='New Lead',
+            #     message=plain_message,
+            #     from_email=from_email,
+            #     recipient_list=[form.cleaned_data['email']],
+            #     html_message=convert_to_html_context,
+            #     fail_silently=False,
+            # )
             return render(request, 'main/index.html', context)
     context = {
         'form': form,
@@ -62,6 +64,11 @@ def index(request):
 
 def contact(request): 
     form = LeadForm()
+    if request.method == 'POST':
+        form = LeadForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'main/contact.html', {'form': form, 'message': 'Thank you for contacting us!'})
     return render(request, 'main/contact.html', {'form': form})
 
 def email(request):

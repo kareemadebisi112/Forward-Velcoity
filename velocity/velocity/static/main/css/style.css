@@ -1,7 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .golos {
     font-family: "Golos", sans-serif;
+}
+.archivo {
+    font-family: "Archivo", sans-serif;
+    font-weight: 400;
+}
+
+.roboto {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
 }
 
 .navbar-inner {
@@ -20,7 +30,6 @@
     text-decoration: none;
     color: #DEE2E6;
 }
-
 .accordion-body{
     padding-bottom: 16px 0;
 }
@@ -30,5 +39,13 @@
 }
 
 .button {
-    color: #dee2e6
+    color: #dee2e6;
+    background-color: #6A8C69;
+    border: none;
+    transition: background-color 0.5s;
+}
+
+.button:hover {
+    color: #253432;
+    background-color: #dee2e6;
 }
