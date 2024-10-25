@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('main.urls')),
     path('api/v1/', include('rest_framework.urls')),
 
+    path("__reload__/", include("django_browser_reload.urls")),
+
     path('api/v1/edit-page/', views.EditPage.as_view(), name='edit_page'),
 
 ]

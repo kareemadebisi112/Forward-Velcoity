@@ -60,7 +60,7 @@ def index(request):
         'about': About.objects.first(),
         'images': Image.objects.all()
     }
-    return render(request, 'main/index.html', context)
+    return render(request, 'temp/index.html', context)
 
 def contact(request): 
     form = LeadForm()

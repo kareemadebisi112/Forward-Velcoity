@@ -8,3 +8,4 @@ crispy-bootstrap4
 coverage
 django-recaptcha
 djangorestframework
+django-tailwind
