@@ -1,6 +1,5 @@
 Django==5.0.3
 pillow==10.2.0
-simple-salesforce==1.12.5
 python-dotenv==1.0.1
 pytest-django
 django-crispy-forms
@@ -8,3 +7,5 @@ crispy-bootstrap4
 coverage
 django-recaptcha
 djangorestframework
+psycopg2-binary==2.9.9
+django-recaptcha==4.0.0

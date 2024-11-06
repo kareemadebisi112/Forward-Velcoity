@@ -9,8 +9,9 @@ from .models import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .utils import parse_data
+from .utils import parse_data, get_current_year
 from django.http import JsonResponse
+from .services import make_lead
 
 
 dotenv_path = find_dotenv()
@@ -24,52 +25,24 @@ def index(request):
     template = 'main/emails/email.html'
     form = LeadForm()
 
-    if request.method == 'POST':
-        form = LeadForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-            name = form.cleaned_data['name'].split(' ')[0]
-            context = {
-                'form': form,
-                'message': 'Thank you for contacting us!',
-                'services': services,
-                'hero': Hero.objects.first(),
-                'about': About.objects.first(),
-                'images': Image.objects.all()
-            }
-
-            convert_to_html_context = render_to_string(template, context)
-            plain_message = strip_tags(convert_to_html_context)
-            print('Name', name)
-            
-            # send_email(
-            #     subject='New Lead',
-            #     message=plain_message,
-            #     from_email=from_email,
-            #     recipient_list=[form.cleaned_data['email']],
-            #     html_message=convert_to_html_context,
-            #     fail_silently=False,
-            # )
-            return render(request, 'main/index.html', context)
     context = {
         'form': form,
         'message': 'Thank you for contacting us!',
         'services': services,
         'hero': Hero.objects.first(),
         'about': About.objects.first(),
-        'images': Image.objects.all()
+        'images': Image.objects.all(),
+        'year': get_current_year()
     }
     return render(request, 'main/index.html', context)
 
 def contact(request): 
     form = LeadForm()
-    if request.method == 'POST':
-        form = LeadForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'main/contact.html', {'form': form, 'message': 'Thank you for contacting us!'})
-    return render(request, 'main/contact.html', {'form': form})
+    context =  {
+        'form': form,
+        'year': get_current_year()
+    }
+    return render(request, 'main/contact.html', context)
 
 def email(request):
     return render(request, 'main/emails/email.html')
@@ -99,3 +72,17 @@ class EditPage(APIView):
         about.save()
 
         return Response(status=status.HTTP_200_OK)
+    
+
+def post_lead(request):
+    if request.method == 'POST':
+        data = request.POST
+        print(data)
+        name = data['name']
+        email = data['email']
+        service = data['service']
+        message = data['message']
+        make_lead(name, email, service, message)
+        first_name = name.split(' ')[0]
+        return render(request, 'main/thankyou.html', {'name': first_name})
+    return JsonResponse({'message': 'Error'}, status=400)

@@ -78,9 +78,7 @@
 				 <!-- Info Modal -->
 				 <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="infoLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
-						<form 
-						hx-post="/">
-							{% csrf_token %}
+						<div>
 					  <div class="modal-content">
 						<div class="modal-header">
 						  <h5 class="modal-title" id="infoLabel">Tell us what you need!</h5>
@@ -88,19 +86,27 @@
 							<span aria-hidden="true">&times;</span>
 						  </button>
 						</div>
-						<div class="modal-body">
-						
+						<div class="modal-body" id="modal-body">
+							
 							
 							<div class="form-group">
-								{{ form|crispy }}
+							<form 
+							class="info-form"
+							hx-post="{% url 'post-lead' %}"
+							hx-swap="innerHTML"
+							hx-target="#modal-body">
+								
+									{% csrf_token %}
+		
+									{{ form|crispy }}
+							<button type="submit" id="submit-button" class="btn rounded-pill button submit-button" name="submit">Submit</button>
+
+							</form>
 							</div>
-							
 						</div>
-						<div class="modal-footer">
-							<button type="submit" id="submit-button" class="btn rounded-pill button" name="submit">Submit
-						</button>
-						</div>
-					</form>
+
+					  </div>
+				</div>
 					  </div>
 					</div>
 				  </div>
@@ -130,7 +136,23 @@
 					return false;
 					});
 				  </script>
-				  
+		
+		<!-- Footer -->
+		 <section class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="footer-content text-center archivo">
+								{% if year %}
+								<p class="mb-0">© {{year}} Forward Velocity. All rights reserved.</p>
+								{% else %}
+								<p class="mb-0">© 1995 Forward Velocity. All rights reserved.</p>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+		 </section>
 				
 
      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

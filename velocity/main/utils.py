@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from datetime import datetime
 
 def send_my_email(subject, message, from_email, recipient_list):
     return send_mail(
@@ -27,3 +28,6 @@ def parse_data(data):
         'about_id': data['data']['about']['id']
     }
     return update_hero, update_about
+
+def get_current_year():
+    return datetime.now().year

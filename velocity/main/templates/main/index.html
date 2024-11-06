@@ -9,10 +9,15 @@
 			<div class="col-lg-6 m-auto order-2">
 				<div class="px-5 px-xxl-8 py-6 py-lg-8">
 					<!-- Title --> 
+					 {% if hero.title == '' %}
+					 <h1 class="display-2 mb-4 lh-base roboto" style="font-weight:600;">No Header</h1>
+					 <p class="lead mb-5 archivo" style="font-weight:lighter;">No Text</p>
+					 {% else %}
 					<h1 class="display-2 mb-4 lh-base roboto" style="font-weight:600;">{{hero.title}}
 					</h1>
-                    <p class="lead mb-5 archivo" style="font-weight:lighter;">{{hero.description}}</p>
+                    <h2 class="lead mb-5 archivo">{{hero.description}}</h2>
 					<button type='button' data-toggle="modal" data-target="#info" class="btn btn-lg mb-0 roboto rounded-pill button" >{{hero.button_text}}</button>
+					{% endif %}
 				</div>
 			</div>
 
@@ -41,80 +46,77 @@
 </section>
 
 <!-- About Section -->
-<section class="about">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-11 mx-auto">
-				<div class="row g-4 g-lg-6">
-					<!-- Title content -->
-					<div class="col-xl-5">
-						<h3>{{about.description}} <span class="text-primary">{{about.highlight_text}}</span></h3>
-					</div>
+<section class="expertise py-5 text-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h3 class="display-5 fw-bold roboto">Leverage Our Full Digital Product Expertise</h3>
+                <p class="lead archivo">Whether you want to consult an idea, add missing capabilities, quickly expand your team, or hand over a project – we’ve got you covered.
+				</p>
+            </div>
+        </div>
 
-					<!-- Years content -->
-					<div class="col-md-6 col-xl-3">
-						<div class="bg-light rounded p-4 overflow-hidden bg-dark">
-							<h6 class="mb-5 mb-sm-8">Since</h6>
-							<div class="display-1 text-primary text-end mb-n5 mb-md-n6 me-n4">{{about.year}}</div>
-						</div>
-					</div>
-					
-					<!-- Info content -->
-					<div class="col-md-6 col-xl-4">
-						<h6 class="fw-semibold mb-5">10 Years of working experience</h6>
-					
-						<!-- Accordion START -->
-						<div class="accordion accordion-icon accordion-border-bottom" id="accordionFaq">
-							<!-- Item -->
-							<div class="accordion-item mb-3">
-								<div class="accordion-header font-base" id="heading-1">
-									<button class="accordion-button fw-semibold rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-										<i class="bi bi-bullseye text-primary me-2"></i>Our Mission
-									</button>
-								</div>
-								<!-- Body -->
-								<div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionFaq">
-									<div class="accordion-body pb-0">
-										{{about.mission_text}}
-									</div>
-								</div>
-							</div>
-
-							<!-- Item -->
-							<div class="accordion-item mb-3">
-								<div class="accordion-header font-base" id="heading-2">
-									<button class="accordion-button fw-semibold rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-										<i class="bi bi-trophy text-primary me-2"></i>Our Goal
-									</button>
-								</div>
-								<!-- Body -->
-								<div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#accordionFaq">
-									<div class="accordion-body pb-0">
-										{{about.vision_text}}
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Accordion END -->
+			<div class="row numbers bg-dark">
+				<div class="col-md-4 mb-4">
+					<div class="p-4 ">
+						<h class="fw-bold text-light roboto"><span>00.</span> Every Step of Success  <i class="bi bi-arrow-right-short"></i></h5>
+						<p class="archivo">Insightful guidance to define a roadmap that aligns with your business goals.</p>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+				<div class="col-md-4 mb-4">
+					<div class="p-4 bg-secondary rounded cards">
+						<h5 class="fw-bold text-light roboto"><span>01.</span> Ideate</h5>
+						<p class="archivo">Identify, shape and validate your product idea</p>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="p-4 bg-secondary rounded cards">
+						<h5 class="fw-bold text-light roboto"><span>02.</span> Design</h5>
+						<p class="archivo">Craft beautiful digital experiences accross platforms</p>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="p-4 bg-secondary rounded cards">
+						<h5 class="fw-bold text-light roboto"><span>03.</span> Develop</h5>
+						<p class="archivo">Bring products to life with world-class engineering</p>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="p-4 bg-secondary rounded cards">
+						<h5 class="fw-bold text-light roboto"><span>04.</span> Maintain</h5>
+						<p class="archivo">Safegaurd your product's quality and reliability</p>
+					</div>
+				</div>
+				<div class="col-md-4 mb-4">
+					<div class="p-4 bg-secondary rounded cards">
+						<h5 class="fw-bold text-light roboto"><span>05.</span> Scale</h5>
+						<p class="archivo">Gain flexibility to adjust and expand on the fly</p>
+					</div>
+				</div>
+
+
+
+        </div>
+    </div>
 </section>
+
 
 <!-- Services Section -->
 <section class="bg-dark services" data-bs-theme="dark" >
 	<div class="container">
-		<div class="inner-container-small m-0 mb-7">
-			<h2 class="mb-4">Our Comprehensive Services</h2>
-			<p class="mb-0">Our team of experts specializes in delivering tailored services designed to propel your organization forward in today's fast-paced digital landscape.</p>
+		<div class="row text-center mb-5">
+			<div class="col-lg-8 mx-auto">
+				<h3 class="display-5 fw-bold roboto">Our Comprehensive Services</h3>
+				<p class="lead archivo">Whether you want to consult an idea, add missing capabilities, quickly expand your team, or hand over a project – we’ve got you covered.
+				</p>
+			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-12">
 
 				<hr> <!-- Divider -->
+				{% if services %}
 				{% for service in services %}
 				{% if service.html_id == 'serv_ai' %}
 				<!-- AI Service item -->
@@ -148,6 +150,7 @@
 				<hr> <!-- Divider -->		
 				{% endif %}		
 				{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</div>

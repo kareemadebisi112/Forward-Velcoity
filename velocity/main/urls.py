@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('contact/', views.contact, name='contact'),
     path('email/', views.email, name='email'),
+    path('post_lead/', views.post_lead, name='post-lead'),
 ]

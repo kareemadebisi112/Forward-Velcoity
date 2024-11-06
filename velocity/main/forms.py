@@ -6,15 +6,15 @@ from django_recaptcha.widgets import ReCaptchaV3
 
 class LeadForm(ModelForm):
     CHOICES = (
-        ('AI', 'AI Features'),
-        ('WH', 'Web Hosting'),
-        ('WD', 'Web Design'),
-        ('DM', 'Digital Marketing'),
-        ('OT', 'Other'),
+        ('AI Features', 'AI Features'),
+        ('Web Hosting', 'Web Hosting'),
+        ('Web Design', 'Web Design'),
+        ('Digital Marketing', 'Digital Marketing'),
+        ('Other', 'Other'),
     )
     service = forms.MultipleChoiceField(choices=CHOICES, widget=forms.CheckboxSelectMultiple, label='Service(s)')
     message = forms.CharField(widget=forms.Textarea, required=True, label='Tell us more about your project.')
-    # captcha = ReCaptchaField(widget=ReCaptchaV3)
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     class Meta:
         model = Lead
