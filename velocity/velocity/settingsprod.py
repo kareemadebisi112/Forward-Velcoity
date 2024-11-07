@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'rest_framework',
     'django_recaptcha',
+    'django.contrib.sitemaps',
 ]
 
 
