@@ -55,3 +55,10 @@ class Image(BaseModel):
 
     def __str__(self):
         return self.alt_text
+
+# Visit Object
+class Visit(models.Model):
+    visit = models.PositiveIntegerField()
+    modified_date = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return str(self.visit)

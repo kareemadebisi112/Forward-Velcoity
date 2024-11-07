@@ -6,7 +6,7 @@ from .models import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .utils import parse_data, get_current_year
+from .utils import parse_data, get_current_year, addVisit
 from django.http import JsonResponse
 from .services import make_lead
 
@@ -17,6 +17,7 @@ load_dotenv(dotenv_path)
 
 
 def index(request):
+    addVisit()
     services = Service.objects.all()
     from_email = os.getenv("EMAIL_HOST_USER")
     template = 'main/emails/email.html'
