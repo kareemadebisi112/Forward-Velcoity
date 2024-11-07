@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from .forms import LeadForm
-from django.core.mail import send_mail as send_email
 import os
 from dotenv import find_dotenv, load_dotenv
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 from .models import *
 from rest_framework import status
 from rest_framework.response import Response
