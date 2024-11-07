@@ -7,14 +7,29 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .utils import parse_data, get_current_year, addVisit
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .services import make_lead
-
+from django.views.decorators.http import require_GET
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 # Create your views here.
 
+
+@require_GET
+def robots_txt(request):
+    return HttpResponse(robots_txt_content, content_type="text/plain")
+
+
+robots_txt_content = """\
+User-Agent: *
+Disallow: /admin/
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://www.forward-velocity.com/sitemap.xml
+"""
 
 def index(request):
     addVisit()
