@@ -18,7 +18,7 @@ load_dotenv(dotenv_path)
 
 @require_GET
 def robots_txt(request):
-    return HttpResponse(robots_txt_content, content_type="text/plain")
+    return HttpResponse(robots_txt_content, content_type="text/plain", status=200)
 
 
 robots_txt_content = """\
