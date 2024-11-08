@@ -1,25 +1,38 @@
 from django.shortcuts import render
 from .forms import LeadForm
-from django.core.mail import send_mail as send_email
 import os
 from dotenv import find_dotenv, load_dotenv
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 from .models import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .utils import parse_data, get_current_year
-from django.http import JsonResponse
+from .utils import parse_data, get_current_year, addVisit
+from django.http import JsonResponse, HttpResponse
 from .services import make_lead
-
+from django.views.decorators.http import require_GET
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 # Create your views here.
 
 
+@require_GET
+def robots_txt(request):
+    return HttpResponse(robots_txt_content, content_type="text/plain", status=200)
+
+
+robots_txt_content = """\
+User-Agent: *
+Disallow: /admin/
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://www.forward-velocity.com/sitemap.xml
+"""
+
 def index(request):
+    addVisit()
     services = Service.objects.all()
     from_email = os.getenv("EMAIL_HOST_USER")
     template = 'main/emails/email.html'

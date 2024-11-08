@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from datetime import datetime
+from .models import Visit
 
 def send_my_email(subject, message, from_email, recipient_list):
     return send_mail(
@@ -31,3 +32,14 @@ def parse_data(data):
 
 def get_current_year():
     return datetime.now().year
+
+def addVisit():
+    visit = Visit.objects.all()
+    if visit:
+        visit = visit[0]
+        visit.visit += 1
+        visit.save()
+    else:
+        Visit.objects.create(
+            visit=1
+        )
