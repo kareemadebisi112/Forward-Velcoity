@@ -14,6 +14,11 @@ urlpatterns = [
     path('email/', views.email, name='email'),
     path('post_lead/', views.post_lead, name='post-lead'),
 
+    # Blog
+    path('blog/', views.blog_list, name='blog_list'),
+    path('blog/<slug>/', views.blog_detail, name='blog_detail'),
+
+
     path('sitemap.xml', 
          sitemap, 
          {'sitemaps': sitemaps}, 

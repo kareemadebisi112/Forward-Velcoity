@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .forms import LeadForm
 import os
 from dotenv import find_dotenv, load_dotenv
@@ -10,6 +10,7 @@ from .utils import parse_data, get_current_year, addVisit
 from django.http import JsonResponse, HttpResponse
 from .services import make_lead
 from django.views.decorators.http import require_GET
+
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
@@ -99,3 +100,13 @@ def post_lead(request):
         first_name = name.split(' ')[0]
         return render(request, 'main/thankyou.html', {'name': first_name})
     return JsonResponse({'message': 'Error'}, status=400)
+
+def blog_list(request):
+    blogs = Blog.objects.all()
+    return render(request, 'main/blog/blog_list.html', {'blogs': blogs})
+
+def blog_detail(request, slug):
+    print(slug)
+    blog = get_object_or_404(Blog, slug=slug)
+    category = BlogCategory.objects.get(blog=blog)
+    return render(request, 'main/blog/blog_detail.html', {'blog': blog, 'category': category.category})
