@@ -1,16 +1,74 @@
 {% extends 'main/main.html' %}
 {% load static %}
 {% block content %}
-    <div class="container mt-5">
-        <h1>Blog Post List</h1>
-        <ul>
+<style>
+    a{
+        color: #dee2e6;
+        text-decoration: none;
+
+        &:hover{
+            color: #09ff00;
+            text-decoration: none;
+
+        }
+    }
+</style>
+<section class="py-10 mt-5">
+    <div class="container px-5 mt-5">
+        <h1 class="display-2 lh-base">Blog</h2>
+
         {% if blogs %}
-        {% for blog in blogs %}
-            <li><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a> - {{ blog.publication_date }} - {{ blog.author }}</li>
-        {% endfor %}
+            {% for blog in blogs %}
+            {% if forloop.first %}
+            <a class="card post-preview post-preview-featured lift mb-5 overflow-hidden" href="{% url 'blog_detail' blog.slug %}">
+                <div class="row g-0">
+                    <div class="col-lg-5">
+                        <img src="{{blog.image.url}}" width="475" alt="">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card-body">
+                            <div class="py-5">
+                                <h2 class="card-title">{{blog.title}}</h5>
+                                <p class="card-text">{{blog.intro}}</p>
+                            </div>
+                            <hr>
+                            <div class="post-preview-meta">
+                                <div class="post-preview-meta-details">
+                                    <div class="post-preview-meta-details-name">{{blog.author}}</div>
+                                    <div class="post-preview-meta-details-date">{{blog.created_at|date:"M d, Y"}} · 6 min read</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="row gx-5">
+            {% else %}
+                <div class="col-md-6 col-xl-4 mb-5">
+                    <a class="card post-preview lift h-100" href="{% url 'blog_detail' blog.slug %}">
+                        <img src="{% static 'main/assets/pexels-fauxels-3184416.jpg' %}" width="350" alt="">
+                        <div class="card-body">
+                            <h3 class="card-title">{{blog.title}}</h5>
+                            <p class="card-text">{{blog.intro}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="post-preview-meta">
+                                <div class="post-preview-meta-details">
+                                    <div class="post-preview-meta-details-date">{{blog.created_at|date:"M d, Y"}} · 5 min read</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+            {% endfor %}
         {% else %}
-            <li>No posts found</li>
+            <h2>No blogs found</h2>
         {% endif %}
-        </ul>
     </div>
+    <div class="svg-border-rounded text-dark">
+        <!-- Rounded SVG Border-->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+    </div>
+</section>
 {% endblock content %}

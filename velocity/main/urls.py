@@ -3,6 +3,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap
+from django.conf import settings
+from django.conf.urls.static import static
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -26,4 +28,4 @@ urlpatterns = [
          ),
 
     path('robots.txt', views.robots_txt, name='robots_txt'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

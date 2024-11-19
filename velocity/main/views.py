@@ -29,11 +29,12 @@ Disallow: /admin/
 User-agent: GPTBot
 Disallow: /
 
-Sitemap: https://www.forward-velocity.com/sitemap.xml
+Sitemap: forward-velocity.com/sitemap.xml
 """
 
 def index(request):
     addVisit()
+    hero = Hero.objects.latest('id')
     services = Service.objects.all()
     from_email = os.getenv("EMAIL_HOST_USER")
     template = 'main/emails/email.html'
@@ -43,7 +44,7 @@ def index(request):
         'form': form,
         'message': 'Thank you for contacting us!',
         'services': services,
-        'hero': Hero.objects.first(),
+        'hero': hero,
         'about': About.objects.first(),
         'images': Image.objects.all(),
         'year': get_current_year()
@@ -106,7 +107,13 @@ def blog_list(request):
     return render(request, 'main/blog/blog_list.html', {'blogs': blogs})
 
 def blog_detail(request, slug):
-    print(slug)
+    form = LeadForm()
     blog = get_object_or_404(Blog, slug=slug)
-    category = BlogCategory.objects.get(blog=blog)
-    return render(request, 'main/blog/blog_detail.html', {'blog': blog, 'category': category.category})
+    category = blog.category.name
+    context = {
+        'blog': blog,
+        'category': category,
+        'form': form,
+        'year': get_current_year(),
+    }
+    return render(request, 'main/blog/blog_detail.html', context)
