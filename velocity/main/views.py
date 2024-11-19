@@ -104,7 +104,11 @@ def post_lead(request):
 
 def blog_list(request):
     blogs = Blog.objects.all()
-    return render(request, 'main/blog/blog_list.html', {'blogs': blogs})
+    context = {
+        'blogs': blogs,
+        'year': get_current_year()
+    }
+    return render(request, 'main/blog/blog_list.html', context)
 
 def blog_detail(request, slug):
     form = LeadForm()
