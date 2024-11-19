@@ -1,0 +1,92 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5 p-2">
+    <section class="py-10">
+        <style>
+            .sticky-cta {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1050;
+            }
+            h2{
+                font-weight: 700 !important;
+                font-size: 32px;
+                margin-top: 3rem;
+                margin-bottom: 1rem;
+            }
+            p{
+                line-height: 1.75rem;
+            }
+            a{
+                color: #dee2e6;
+                &:hover{
+                    color: #09ff00;
+                }
+            }
+            .bluesky{
+                filter: brightness(0) saturate(100%) invert(87%) sepia(2%) saturate(1824%) hue-rotate(193deg) brightness(112%) contrast(81%);
+                &:hover{
+                    filter: brightness(0) saturate(100%) invert(66%) sepia(72%) saturate(3742%) hue-rotate(76deg) brightness(118%) contrast(130%);
+                }
+            }
+
+        </style>
+        
+        <div class="container px-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="single-post">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="{% url 'blog_list' %}" class="breadcrumb-link">Blog</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">{{blog.title}}</li>
+                            </ol>
+                          </nav>
+            
+                        <h1 class="mb-4">{{blog.title}}</h1>
+                        <p class="lead mb-4">{{blog.intro}}</p>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="single-post-meta me-4">
+                                
+                                <div class="single-post-meta-details">
+                                    <div class="single-post-meta-details-name">Written By: {{blog.author}}</div>
+                                    <div class="single-post-meta-details-date">{{blog.created_at|date:"M d, Y"}} · 6 min read</div>
+                                    {% if blog.updated_at != blog.created_at %}
+                                    <div class="single-post-meta-details-date text-muted">Updated on: {{blog.updated_at|date:"M d, Y"}}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="single-post-meta-links d-flex gap-3 socials">
+                                <a href="https://twitter.com/share?url=forward-velocity.com{% url 'blog_detail' blog.slug %}" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share on Twitter" rel="noopener"><i class="bi bi-twitter-x"></i></a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=forward-velocity.com{% url 'blog_detail' blog.slug %}" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share on Facebook" rel="noopener"><i class="bi bi-facebook"></i></a>
+                                <a href="https://reddit.com/submit?url=forward-velocity.com{% url 'blog_detail' blog.slug %}" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share on Reddit" rel="noopener"><i class="bi bi-reddit"></i></a>
+                                <a href="https://bsky.app/intent/compose?text=forward-velocity.com{% url 'blog_detail' blog.slug %}" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share on Bluesky" class="bluesky" rel="noopener"><img src="{% static 'main/assets/Bluesky_Logo.png' %}" width="16" height="16" alt=""></a>
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&url=forward-velocity.com{% url 'blog_detail' blog.slug %}" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share on Linkedin" rel="noopener"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-center">
+                        <img class="img-fluid mb-2 rounded" src="{{blog.image.url}}">
+                        </div>
+                        <!-- <div class="small text-gray-500 text-center">Photo Credit: Unsplash</div> -->
+                        <div class="single-post-text my-3 blog-body">
+                            {{blog.content|safe}}
+                            <div class="d-flex flex-row justify-content-center">
+                                <img class="img-fluid mb-2 rounded " src="{% static 'main/assets/pexels-ann-h-45017-3482442.jpg' %}">
+                            </div>
+                            <hr>
+                            <div class="text-center"><a href="{% url 'blog_list' %}">Back to Blog Overview</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="svg-border-rounded text-dark">
+            <!-- Rounded SVG Border-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+        </div>
+    </section>
+</div>
+{% endblock content %}

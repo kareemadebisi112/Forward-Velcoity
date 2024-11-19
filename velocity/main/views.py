@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .forms import LeadForm
 import os
 from dotenv import find_dotenv, load_dotenv
@@ -10,6 +10,7 @@ from .utils import parse_data, get_current_year, addVisit
 from django.http import JsonResponse, HttpResponse
 from .services import make_lead
 from django.views.decorators.http import require_GET
+
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
@@ -28,11 +29,12 @@ Disallow: /admin/
 User-agent: GPTBot
 Disallow: /
 
-Sitemap: https://www.forward-velocity.com/sitemap.xml
+Sitemap: forward-velocity.com/sitemap.xml
 """
 
 def index(request):
     addVisit()
+    hero = Hero.objects.latest('id')
     services = Service.objects.all()
     from_email = os.getenv("EMAIL_HOST_USER")
     template = 'main/emails/email.html'
@@ -42,7 +44,7 @@ def index(request):
         'form': form,
         'message': 'Thank you for contacting us!',
         'services': services,
-        'hero': Hero.objects.first(),
+        'hero': hero,
         'about': About.objects.first(),
         'images': Image.objects.all(),
         'year': get_current_year()
@@ -99,3 +101,19 @@ def post_lead(request):
         first_name = name.split(' ')[0]
         return render(request, 'main/thankyou.html', {'name': first_name})
     return JsonResponse({'message': 'Error'}, status=400)
+
+def blog_list(request):
+    blogs = Blog.objects.all()
+    return render(request, 'main/blog/blog_list.html', {'blogs': blogs})
+
+def blog_detail(request, slug):
+    form = LeadForm()
+    blog = get_object_or_404(Blog, slug=slug)
+    category = blog.category.name
+    context = {
+        'blog': blog,
+        'category': category,
+        'form': form,
+        'year': get_current_year(),
+    }
+    return render(request, 'main/blog/blog_detail.html', context)

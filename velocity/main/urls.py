@@ -3,6 +3,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap
+from django.conf import settings
+from django.conf.urls.static import static
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -14,6 +16,11 @@ urlpatterns = [
     path('email/', views.email, name='email'),
     path('post_lead/', views.post_lead, name='post-lead'),
 
+    # Blog
+    path('blog/', views.blog_list, name='blog_list'),
+    path('blog/<slug>/', views.blog_detail, name='blog_detail'),
+
+
     path('sitemap.xml', 
          sitemap, 
          {'sitemaps': sitemaps}, 
@@ -21,4 +28,4 @@ urlpatterns = [
          ),
 
     path('robots.txt', views.robots_txt, name='robots_txt'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
