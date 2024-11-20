@@ -140,7 +140,7 @@
 									{% csrf_token %}
 		
 									{{ form|crispy }}
-							<button onclick="return gtag_report_conversion('https://forward-velocity.com/contact')" type="submit" id="submit-button" class="btn rounded-pill button submit-button" name="submit">Submit</button>
+							<button onclick="return gtagSendEvent('https://forward-velocity.com/contact')" type="submit" id="submit-button" class="btn rounded-pill button submit-button" name="submit">Submit</button>
 
 							</form>
 							</div>
