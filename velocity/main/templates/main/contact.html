@@ -10,7 +10,7 @@
             <div id="contact-form">
                 <form>
                     {{ form|crispy }}
-                    <button type="submit" class="btn golos rounded-pill" style="background-color: #6A8C69;"
+                    <button onclick="return gtag_report_conversion('https://forward-velocity.com')" type="submit" class="btn golos rounded-pill" style="background-color: #6A8C69;"
                     hx-post="{% url 'post-lead' %}"
                     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                     hx-target="#contact-form"
