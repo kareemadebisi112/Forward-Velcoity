@@ -10,11 +10,12 @@
             <div id="contact-form">
                 <form>
                     {{ form|crispy }}
-                    <button onclick="return gtagSendEvent('https://forward-velocity.com')" type="submit" class="btn golos rounded-pill" style="background-color: #6A8C69;"
+                    <button type="submit" class="btn golos rounded-pill" style="background-color: #6A8C69;"
                     hx-post="{% url 'post-lead' %}"
                     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                     hx-target="#contact-form"
-                    hx-swap="innerHTML">Submit</button>
+                    hx-swap="innerHTML"
+                    hx-on:click="return gtagSendEvent('https://forward-velocity.com')">Submit</button>
                 </form>
             </div>
 
