@@ -51,6 +51,24 @@
   gtag('config', 'AW-16756458298');
 </script>  
 
+<!-- Event snippet for Submit Lead conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+	function gtag_report_conversion(url) {
+	  var callback = function () {
+		if (typeof(url) != 'undefined') {
+		  window.location = url;
+		}
+	  };
+	  gtag('event', 'conversion', {
+		  'send_to': 'AW-16756458298/6K6CCPSR0OwZELqGjbY-',
+		  'event_callback': callback
+	  });
+	  return false;
+	}
+	</script>
+	
+
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -126,7 +144,7 @@
 							class="info-form"
 							hx-post="{% url 'post-lead' %}"
 							hx-swap="innerHTML"
-							hx-target="#modal-body"\
+							hx-target="#modal-body"
 							hx-on:click="return gtagSendEvent('https://forward-velocity.com/contact')">
 								
 									{% csrf_token %}
