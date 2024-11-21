@@ -22,6 +22,13 @@
 	  <meta name="twitter:description" content="Forward Velocity: Maryland-based firm offering custom web and app development, AI features, and brand identity for small businesses.">
 	  <meta name="twitter:image" content="{% static 'main/assets/fv_logo.png' %}"> <!-- Link to an image that represents your brand -->
 
+	<!-- Essential Open Graph tags -->
+	<meta property="og:title" content="{{ og_title|default:'Forward Velocity - Software Development Firm' }}">
+	<meta property="og:description" content="{{ og_desc|default:'Forward Velocity: Maryland-based firm offering custom web and app development, AI features, and brand identity for small businesses.' }}">
+	<meta property="og:image" content="{{ og_image|default:'static/main/assets/fv_logo.png' }}">
+	<meta property="og:url" content="{{ request.build_absolute_uri }}">
+	<meta property="og:type" content="{{ og_type|default:'website' }}">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script id="applicationScript" type="text/javascript" src="{% static 'main/js/script.js' %}"></script>

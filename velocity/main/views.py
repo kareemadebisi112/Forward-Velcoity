@@ -121,5 +121,9 @@ def blog_detail(request, slug):
         'category': category,
         'form': form,
         'year': get_current_year(),
+        'og_title': blog.title,
+        'og_desc': blog.intro,
+        'og_image': blog.image.url,
+        'og_url': request.build_absolute_uri(),
     }
     return render(request, 'main/blog/blog_detail.html', context)
