@@ -41,24 +41,15 @@
 	</script>
 
 	<!-- Google tag (gtag.js) event - delayed navigation helper -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16756458298"></script>
 <script>
-	// Helper function to delay opening a URL until a gtag event is sent.
-	// Call it in response to an action that should navigate to a URL.
-	function gtagSendEvent(url) {
-	  var callback = function () {
-		if (typeof url === 'string') {
-		  window.location = url;
-		}
-	  };
-	  gtag('event', 'conversion_event_submit_lead_form', {
-		'event_callback': callback,
-		'event_timeout': 2000,
-		// <event_parameters>
-	  });
-	  return false;
-	}
-  </script>
-  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16756458298');
+</script>  
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
