@@ -125,5 +125,6 @@ def blog_detail(request, slug):
         'og_desc': blog.intro,
         'og_image': blog.image.url,
         'og_url': request.build_absolute_uri(),
+        'og_type': 'article'
     }
     return render(request, 'main/blog/blog_detail.html', context)
