@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_recaptcha',
     'django.contrib.sitemaps',
-    'ckeditor',
+    # 'ckeditor',
 ]
 
 
